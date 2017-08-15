@@ -29,11 +29,6 @@ dependencies {
 	compile group: 'com.linecorp.bot', name: 'line-bot-spring-boot', version: '1.8.0'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
-}
-
-
 eclipse{
  wtp{
   facet{
@@ -45,4 +40,8 @@ eclipse{
    facet name: 'wst.jst.web', version: '1.0'
   }
  }
+}
+
+task stage() {
+    dependsOn clean, war
 }
