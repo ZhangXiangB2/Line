@@ -41,3 +41,7 @@ eclipse{
   }
  }
 }
+
+task stage() {
+    dependsOn clean, war
+}
