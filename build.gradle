@@ -9,8 +9,11 @@
 import org.gradle.plugins.ide.eclipse.model.Facet
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
 
 sourceCompatibility = 1.8
+webAppDirName = 'WebContent'
 sourceSets.main.java.srcDir 'src/main/java'
 sourceSets.main.resources.srcDir 'src/main/resources'
 compileJava.options.encoding = 'UTF-8'
@@ -24,4 +27,21 @@ repositories {
 
 dependencies {
 	compile group: 'com.linecorp.bot', name: 'line-bot-spring-boot', version: '1.8.0'
+}
+
+eclipse{
+ wtp{
+  facet{
+   facet name: 'jst.web', type: Facet.FacetType.fixed
+   facet name: 'wst.jst.web', type: Facet.FacetType.fixed
+   facet name: 'jst.java', type: Facet.FacetType.fixed
+   facet name: 'jst.web', version: '3.0'
+   facet name: 'jst.java', version: '1.8'
+   facet name: 'wst.jst.web', version: '1.0'
+  }
+ }
+}
+
+task stage() {
+    dependsOn clean, war
 }
