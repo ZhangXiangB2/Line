@@ -5,6 +5,7 @@
  * For more details take a look at the Java Libraries chapter in the Gradle
  * user guide available at https://docs.gradle.org/3.5/userguide/java_library_plugin.html
  */
+ 
 
 import org.gradle.plugins.ide.eclipse.model.Facet
 // Apply the java-library plugin to add support for Java Library
@@ -18,7 +19,6 @@ sourceSets.main.java.srcDir 'src/main/java'
 sourceSets.main.resources.srcDir 'src/main/resources'
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
-
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -42,4 +42,5 @@ eclipse{
  }
 }
 
-task stage(dependsOn: ['clean', 'installApp'])
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
